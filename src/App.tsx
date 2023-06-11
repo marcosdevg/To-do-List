@@ -21,7 +21,6 @@ const App = () => {
     setList(newList);
   };
 
-  // Função feita para tarefinha de casa.
   const handleTaskChange = (id: number, done: boolean) => {
     let newList = [...list];
     for (let i in newList) {
@@ -32,17 +31,26 @@ const App = () => {
     setList(newList);
   };
 
+  const removeTodo = (id: number) => {
+    const uptadeTodos = list.filter((todo) => todo.id !== id);
+    setList(uptadeTodos);
+  };
+
   return (
-  
     <C.Container>
       <ResetStyles />
       <C.Area>
         <C.Header>Lista de Tarefas</C.Header>
-
+        <div className="faaf"></div>
         <AddArea onEnter={handleAddTask} />
 
         {list.map((item, index) => (
-          <ListItem key={index} item={item} onChange={handleTaskChange} />
+          <ListItem
+            key={index}
+            item={item}
+            onChange={handleTaskChange}
+            removeTodo={removeTodo}
+          />
         ))}
       </C.Area>
     </C.Container>
